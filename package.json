@@ -1,0 +1,15 @@
+{
+  "name": "blog-api-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "\"mocha\"",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^3.1.0"
+  }
+}
