@@ -24,7 +24,8 @@ router.post('/blog-posts', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.publishDate, );
+  const {title, content, author, publishDate} = req.body;
+  const item = BlogPosts.create(title, content, author, publishDate);
   res.status(201).json(item);
 })
 
@@ -52,6 +53,7 @@ router.put('/blog-posts/:id', jsonParser, (req, res) => {
     console.error(message);
     return res.status(400).send(message);
   }
+
   console.log(`Updating blog post \`${req.params.id}\``);
   BlogPosts.update({
     id: req.params.id,
