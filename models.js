@@ -1,17 +1,23 @@
 const uuid = require('uuid');
 const mongoose = require('mongoose');
 
-const BlogPosts = mongoose.Schema({
-  title: {type: String, required: true},
+const BlogPostsSchema = mongoose.Schema({
+      title: {type: String, required: true},
       content: {type: String, required: true},
       author: {type: String, required: true},
       created: {type: String, required: true}
 });
 
-const BlogPost = mongoose.model('Restaurant', restaurantSchema);
+
+
+const BlogPost = mongoose.model('BlogPost', BlogPostsSchema);
 // " if you tell Mongoose to create a model 
 // with mongoose.model('Restaurant', restaurantSchema), 
 // behind the scenes it will be working with db.restaurants."
+
+
+
+
 
 
 
