@@ -10,7 +10,7 @@ const BlogPostsSchema = mongoose.Schema({
 
 
 
-const BlogPost = mongoose.model('BlogPost', BlogPostsSchema);
+const BlogPost = mongoose.model('blogs', BlogPostsSchema);
 // " if you tell Mongoose to create a model 
 // with mongoose.model('Restaurant', restaurantSchema), 
 // behind the scenes it will be working with db.restaurants."
@@ -88,7 +88,7 @@ const BlogPost = mongoose.model('BlogPost', BlogPostsSchema);
 // }
 
 
-// module.exports = {BlogPosts: createBlogPostsModel()};
+module.exports = {BlogPost};
 
 
 
