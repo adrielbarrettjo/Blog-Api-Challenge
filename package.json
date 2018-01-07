@@ -1,7 +1,7 @@
 {
   "name": "blog-api-challenge",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shopping list app to demo 'the modern classic'",
   "main": "server.js",
   "scripts": {
     "test": "\"mocha\"",

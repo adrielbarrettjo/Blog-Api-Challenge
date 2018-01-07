@@ -74,7 +74,7 @@ app.post('/posts', (req, res) => {
 });
 
 app.put('/posts/:id', (req, res) => {
-	if(!(req.params.id && req.body.id && req.params.id === req.body.id)) { //*?*
+	if(!((req.params.id) && (req.body.id) && (req.params.id === req.body.id)) { 
 		
 		res.status(400).json({
 			error: 'request path id and request body id values must match'
@@ -87,8 +87,8 @@ app.put('/posts/:id', (req, res) => {
 		// 	}
 	} 
 
-	const toUpdate = {}; //*?*
-	const updateableFields = ['title', 'content', 'author', 'created']; //*?*
+	const toUpdate = {}; 
+	const updateableFields = ['title', 'content', 'author', 'created']; 
 
 	updateableFields.forEach(field => {
 		if (field in req.body) {
@@ -97,7 +97,7 @@ app.put('/posts/:id', (req, res) => {
 	});
 
 	BlogPost
-	.findByIdAndUpdate(req.params.id, {$set: toUpdate}, {new: true}) // *?* why the {new: true}?
+	.findByIdAndUpdate(req.params.id, {$set: toUpdate}, {new: true}) 
 	.then(post => res.status(204).end())
 	.catch(err => res.status(500).json({message: 'internal server error'}))
 });
