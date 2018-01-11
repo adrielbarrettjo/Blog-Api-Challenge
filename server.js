@@ -28,8 +28,7 @@ app.get('/posts', (req, res) => {
 	.then(posts => {
 		console.log(posts)
 		res.json(
-			posts
-		);
+			posts.map(post => post.serialize()));
 	})
 	.catch(
 		err => {
@@ -49,7 +48,7 @@ app.get('/posts/:id', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-	const requiredField = ['title', 'content', 'author', 'created' ];
+	const requiredField = ['title', 'content', 'author' ];
 	for (let i=0; i<requiredField.length; i++) {
 		const field = requiredField[i];
 		if (!(field in req.body)) {
@@ -74,7 +73,7 @@ app.post('/posts', (req, res) => {
 });
 
 app.put('/posts/:id', (req, res) => {
-	if(!((req.params.id) && (req.body.id) && (req.params.id === req.body.id)) { 
+	if(!((req.params.id) && (req.body.id) && (req.params.id === req.body.id))) { 
 		
 		res.status(400).json({
 			error: 'request path id and request body id values must match'
@@ -103,7 +102,7 @@ app.put('/posts/:id', (req, res) => {
 });
 
 
-app.delete('/:id', (req, res) => {
+app.delete('/posts/:id', (req, res) => {
   BlogPost
     .findByIdAndRemove(req.params.id)
     .then(() => {
@@ -120,7 +119,8 @@ let server;
 function runServer(databaseUrl = DATABASE_URL, port = PORT) { //*?* why do there need to be inputs now?
 	// const port = process.env.PORT || 8080;
 	return new Promise((resolve, reject) => {
-		mongoose.connect(databaseUrl, { useMongoClient: true}, err => {
+		console.log(DATABASE_URL);
+		mongoose.connect("mongodb://dbuser:dbpassword@ds245287.mlab.com:45287/blog-api-mongoose", { useMongoClient: true}, err => {
 			if (err) {
 				return reject(err); //*?* how does this work?
 			}

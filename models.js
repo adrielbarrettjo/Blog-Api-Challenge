@@ -1,13 +1,31 @@
 const uuid = require('uuid');
 const mongoose = require('mongoose');
 
+
 const BlogPostsSchema = mongoose.Schema({
-      title: {type: String, required: true},
-      content: {type: String, required: true},
-      author: {type: String, required: true},
-      created: {type: String, required: true}
+  author: {
+    firstName: String,
+    lastName: String
+  },
+  title: { type: String, required: true },
+  content: { type: String },
+  created: { type: Date, default: Date.now }
 });
 
+
+BlogPostsSchema.virtual('authorName').get(function () {
+  return `${this.author.firstName} ${this.author.lastName}`.trim();
+});
+
+BlogPostsSchema.methods.serialize = function () {
+  return {
+    id: this._id,
+    author: this.authorName,
+    content: this.content,
+    title: this.title,
+    created: this.created
+  };
+};
 
 
 const BlogPost = mongoose.model('blogs', BlogPostsSchema);

@@ -5,4 +5,4 @@ exports.DATABASE_URL = process.env.MONGODB_URI ||
 exports.PORT = process.env.PORT || 8080;
 
 exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL ||
-							"mongodb://localhost/Blog-Api-Mongoose"
+							"mongodb://dbuser:dbpassword@ds245287.mlab.com:45287/blog-api-mongoose";
